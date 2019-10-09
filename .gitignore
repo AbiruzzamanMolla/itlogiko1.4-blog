@@ -27,5 +27,4 @@ someOtherfoler/
 *.tar
 *.zip
 # add files
-
-\!Task.md
+!Task.md
