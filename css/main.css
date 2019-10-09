@@ -3,3 +3,13 @@ body::-webkit-scrollbar {
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
 }
+
+label {
+    font-weight: bold;
+}
+
+#preview{
+    padding-top: 1px;
+    padding-bottom: 1px;
+    font-weight: bold;
+}
