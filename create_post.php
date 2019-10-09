@@ -47,7 +47,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button type="submit" name="submit" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Sign in</button>
+                        <button type="submit" name="createPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Sign in</button>
                     </div>
                     <div class="col-sm-6">
                         <button type="reset" class="btn btn-secondary btn-block btn-lg text-center p-3 m-2">Reset</button>
