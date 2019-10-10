@@ -1,4 +1,7 @@
-<?php include_once "includes/header.php"; ?>
+<?php include_once "includes/header.php";
+include "function/functions.php"; ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+
 <div class="container pb-2">
     <div class="card">
         <div class="card-header text-center">
@@ -14,14 +17,13 @@
                     <label for="post_category">Select Category</label>
                     <select class="form-control" name="post_category_id" id="post_category">
                         <option>Select Category</option>
-                        <option value="1">PHP</option>
-                        <option value="2">HTML</option>
-                        <option value="3">JAVA</option>
+                        <?php showCat(); ?>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="postAuthor">Author</label>
-                    <input type="text" name="post_author" class="form-control" id="postAuthor" placeholder="Post Author">
+                    <input type="text" name="post_author" class="form-control" id="postAuthor"
+                        placeholder="Post Author">
                 </div>
                 <div class="form-group">
                     <label for="postDate">Date</label>
@@ -38,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="postTags">Tags</label>
-                    <input type="text" name="post_tags" class="form-control" id="postTags" placeholder="Tags sepateted by comma.">
+                    <input type="text" name="post_tags" class="form-control" style="width: 80%; padding: 15px 22px; margin: 10px 5px; box-sizing: border-box;" id="postTags" placeholder="Tags sepateted by comma." data-role="tagsinput">
                 </div>
                 <div class="custom-control custom-radio custom-control-inline p-2 m-3">
                     <input type="radio" id="postStatus" name="post_status" class="custom-control-input">
@@ -47,10 +49,12 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <button type="submit" name="createPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Sign in</button>
+                        <button type="submit" name="createPost"
+                            class="btn btn-success btn-block btn-lg text-center p-3 m-2">Create Post</button>
                     </div>
                     <div class="col-sm-6">
-                        <button type="reset" class="btn btn-secondary btn-block btn-lg text-center p-3 m-2">Reset</button>
+                        <button type="reset"
+                            class="btn btn-secondary btn-block btn-lg text-center p-3 m-2">Reset</button>
                     </div>
                 </div>
             </form>
