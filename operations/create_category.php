@@ -17,5 +17,6 @@ include_once('../db/conn.php');
         echo mysqli_error($db);
     }
     } else {
-        header("Location: index.php");
+        header("Location: category.php");
     }
+?>
