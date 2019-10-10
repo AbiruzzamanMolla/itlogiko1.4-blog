@@ -16,11 +16,11 @@ include_once('../db/conn.php');
         $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}','{$post_date}','{$post_image}','{$post_content}','{$post_tags}',{$post_comment_count},'{$post_status}') ";
         $create_post_query = $db->query($query);
         if($create_post_query){
-        echo "Data added";
+            header("Location: index.php");
         } else {
         echo mysqli_error($db);
     }
     } else {
-        echo "not dayta";
+        header("Location: index.php");
     }
 ?>

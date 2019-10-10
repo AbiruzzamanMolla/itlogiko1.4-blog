@@ -12,6 +12,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="css/blog-home.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
