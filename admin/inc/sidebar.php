@@ -34,6 +34,11 @@
             <span>All Category</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="allComment.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>All Comment</span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="tables.html">
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
