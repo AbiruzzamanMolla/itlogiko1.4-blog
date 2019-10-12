@@ -29,10 +29,11 @@
                         $result = $db->query($sql) or die($db->error);;
                         $row = $result->fetch_assoc();
                         ?>
-                        <form action="sReq/addPost.php" method="post" enctype="multipart/form-data" id="createPost">
+                        <form action="sReq/editPost.php" method="post" enctype="multipart/form-data" id="editPost">
                             <div class="form-group">
                                 <label for="postTitle">Post Title</label>
                                 <input type="text" name="post_title" value="<?php echo $row['post_title']; ?>" class="form-control" id="postTitle" placeholder="Post Title">
+                                <input type="hidden" name="id" value="<?php echo $row['post_id']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="post_category">Select Category</label>
@@ -45,11 +46,11 @@
                                 <label for="postAuthor">Author</label>
                                 <input type="text" name="post_author" value="<?php echo $row['post_author']; ?>" class="form-control" id="postAuthor">
                             </div>
-                            <p id="preview">Select Preview</p>
+                            <!-- <p id="preview">Select Preview</p>
                             <div class="custom-file p-4">
                                 <input type="file" class="custom-file-input" name="post_image" id="postImage">
                                 <label class="custom-file-label" for="postImage">Choose image</label>
-                            </div>
+                            </div> -->
                             <div class="form-group">
                                 <label for="postContent">Content</label>
                                 <textarea class="form-control" name="post_content" id="postContent" rows="3"><?php echo $row['post_content']; ?></textarea>
@@ -65,7 +66,7 @@
 
                             <div class="form-group row">
                                 <div class="col-sm-6">
-                                    <button type="submit" name="createPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Create Post</button>
+                                    <button type="submit" name="editPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Update Post</button>
                                 </div>
                                 <div class="col-sm-6">
                                     <button type="reset" class="btn btn-secondary btn-block btn-lg text-center p-3 m-2">Reset</button>

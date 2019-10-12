@@ -1,4 +1,4 @@
-<?php include "inc/header.php"; ?>
+<?php ob_start(); include "inc/header.php"; ?>
 <div id="wrapper">
     <!-- Sidebar -->
     <?php include "inc/sidebar.php"; ?>
@@ -69,7 +69,7 @@
                                         <td><?php echo $row['post_image']; ?></td>
                                         <td><?php echo $a = substr($row['post_content'], 0, 100);
                                                 echo (strlen($row['post_content']) > 100) ? "<a href=''>....</a>" : ""; ?></td>
-                                        <td><a class="btn btn-outline-warning btn-sm m-1" href="editPost.php?id=<?php echo $row['post_id']; ?>">Edit</a> <a class="btn btn-outline-danger btn-sm m-1" href="?delID=<?php echo $row['post_id']; ?>">Delete</a></td>
+                                        <td><a class="btn btn-outline-warning btn-sm m-1" href="editPost.php?id=<?php echo $row['post_id']; ?>">Edit</a> <a class="btn btn-outline-danger btn-sm m-1" href="?delID=<?php echo $row['post_id']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -81,3 +81,12 @@
         </div>
         <!-- /.container-fluid -->
         <?php include "inc/footer.php"; ?>
+
+        <?php
+        if (isset($_GET['delID'])) {
+            $id = $_GET['delID'];
+            $sql = "DELETE FROM `tbl_posts` WHERE `post_id` = $id";
+            $result = $db->query($sql);
+            header("Location: allPost.php");
+        }
+        ?>

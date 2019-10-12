@@ -1,4 +1,4 @@
-<?php include "inc/header.php"; ?>
+<?php ob_start(); include "inc/header.php"; ?>
 <div id="wrapper">
     <!-- Sidebar -->
     <?php include "inc/sidebar.php"; ?>
@@ -59,7 +59,7 @@
                                         <td><?php echo $row['cat_description']; ?></td>
                                         <td>5</td>
                                         <td><?php echo $row['cat_status']; ?></td>
-                                        <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>">Delete</a></td>
+                                        <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -71,3 +71,12 @@
         </div>
         <!-- /.container-fluid -->
         <?php include "inc/footer.php"; ?>
+
+        <?php
+        if (isset($_GET['delID'])) {
+            $id = $_GET['delID'];
+            $sql = "DELETE FROM `tbl_category` WHERE `cat_id` = $id";
+            $result = $db->query($sql);
+            header("Location: allCategory.php");
+        }
+        ?>
