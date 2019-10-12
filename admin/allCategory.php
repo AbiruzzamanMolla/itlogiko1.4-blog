@@ -59,7 +59,7 @@
                                         <td><?php echo $row['cat_description']; ?></td>
                                         <td>5</td>
                                         <td><?php echo $row['cat_status']; ?></td>
-                                        <td><a href="editPost.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>">Delete</a></td>
+                                        <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

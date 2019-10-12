@@ -17,7 +17,8 @@
                 <div class="col-md-4">
                     <div class="btn-group float-right mt-2" role="group">
                         <a class="btn btn-success btn-md disabled" href="addCategory.php">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add Category</a>
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add Category
+                        </a>
                     </div>
                 </div>
             </div>
@@ -28,7 +29,7 @@
                     Create Category
                 </div>
                 <div class="card-body">
-                    <form action="operations/create_category.php" method="post" id="createPost">
+                    <form action="sReq/addCategory.php" method="post" id="createPost">
                         <div class="form-group">
                             <label for="catTitle">Category Title</label>
                             <input type="text" name="cat_name" class="form-control" id="catTitle" placeholder="Category Name">

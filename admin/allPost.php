@@ -18,8 +18,6 @@
                     <div class="btn-group float-right mt-2" role="group">
                         <a class="btn btn-success btn-md" href="addPost.php">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add Post</a>
-                        <a class="btn btn-md btn-primary" href="#">
-                            <i class="fa fa-flag" aria-hidden="true"></i> List Post</a>
                     </div>
                 </div>
             </div>
@@ -69,8 +67,9 @@
                                         <td><?php echo $row['post_date']; ?></td>
                                         <td><?php echo $row['post_status']; ?></td>
                                         <td><?php echo $row['post_image']; ?></td>
-                                        <td><?php echo $a = substr($row['post_content'], 0, 100); ?>....</td>
-                                        <td><a href="editPost.php?id=<?php echo $row['post_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['post_id']; ?>">Delete</a></td>
+                                        <td><?php echo $a = substr($row['post_content'], 0, 100);
+                                                echo (strlen($row['post_content']) > 100) ? "<a href=''>....</a>" : ""; ?></td>
+                                        <td><a class="btn btn-outline-warning btn-sm m-1" href="editPost.php?id=<?php echo $row['post_id']; ?>">Edit</a> <a class="btn btn-outline-danger btn-sm m-1" href="?delID=<?php echo $row['post_id']; ?>">Delete</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
