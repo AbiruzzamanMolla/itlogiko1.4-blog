@@ -44,7 +44,7 @@ include "inc/header.php"; ?>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Bio</th>
-                                    <th>Role</th>
+                                    <th>Role</th> 
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
