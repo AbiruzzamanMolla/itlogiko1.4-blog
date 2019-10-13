@@ -39,8 +39,8 @@
             <span>All Comment</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Tables</span></a>
+        <a class="nav-link" href="allUser.php">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>All Users</span></a>
     </li>
 </ul>
