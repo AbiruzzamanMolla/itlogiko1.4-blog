@@ -21,4 +21,11 @@ function showCat(){
         echo "<option value='{$row['cat_id']}'>{$row['cat_name']}</option>";
     }
 }
+// logout function
+function logout(){
+    if (isset($_GET['logout']) && $_SESSION['id']) {
+        session_destroy();
+        header("Location: login.php");
+    }
+}
 ?>
