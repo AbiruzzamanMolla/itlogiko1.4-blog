@@ -1,5 +1,7 @@
 <?php include "db/conn.php" ?>
 <?php include "func/function.php" ?>
+<?php ob_start(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <head>
     <meta charset="utf-8">
@@ -65,7 +67,7 @@
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
-                    <i class="fas fa-user-circle fa-fw"></i>
+                    <i class="fas fa-user-circle fa-fw"></i> <?php echo isset($_SESSION['id']) ? $_SESSION['username']: "Hi, User!"; ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                     <a class="dropdown-item" href="#">Settings</a>
