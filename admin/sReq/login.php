@@ -17,5 +17,5 @@ if (isset($_POST['login'])) {
         header("Location: ../login.php?msg=Problem Login!");
     }
 } else {
-    header("Location: ../index.php");
+    header("Location: ../login.php");
 }
