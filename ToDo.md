@@ -13,3 +13,10 @@ Data: 13-10-2019
 - Logout Session Distroy
 - Add Login Form and Serverside operations
 - Login Session and Show name in navbar
+
+Date: 14-10-2019
+- Adding Post in frontend
+- Adding Category in Frontend
+- Adding Pagination
+- Adding Category wish post
+- Adding Comment

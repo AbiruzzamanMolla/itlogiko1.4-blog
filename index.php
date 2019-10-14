@@ -45,7 +45,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h2 class="card-title"><?php echo $row['post_title']; ?></h2>
-                        <p class="card-text"><img class="postImage" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap"><?php echo $row['post_content']; ?></p>
+                        <p class="card-text"><img class="rounded float-left postImage" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap"><?php echo $row['post_content']; ?></p>
                         <a href="post.php?id=<?php echo $row['post_id']; ?>" class="btn btn-primary">Read More &rarr;</a>
                     </div>
                     <div class="card-footer text-muted">
@@ -136,4 +136,4 @@
 
 
 
-<?php include_once "includes/header.php"; ?>
+<?php include_once "includes/footer.php"; ?>
