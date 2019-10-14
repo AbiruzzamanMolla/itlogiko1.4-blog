@@ -71,12 +71,13 @@
 
             <!-- Search Widget -->
             <div class="card my-4">
-                <h5 class="card-header">Search</h5>
+                <h5 class="card-header">Login:</h5>
                 <div class="card-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Go!</button>
+                        <input type="text" class="form-control" placeholder="email">
+                        <input type="text" class="form-control" placeholder="password">
+                        <span class="input-group-btn pl-1">
+                            <button class="btn btn-secondary" type="button">Login!</button>
                         </span>
                     </div>
                 </div>
@@ -87,30 +88,19 @@
                 <h5 class="card-header">Categories</h5>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
+                                <?php
+                                $sql = "SELECT * FROM `tbl_category`";
+                                $result = $db->query($sql);
+                                while ($row = $result->fetch_assoc()) {
+                                    ?>
+                                    <li>
+                                        <a href="showByCat.php?cat_id=<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></a>
+                                    </li>
+                                    <hr>
+                                <?php }
+                                ?>
                             </ul>
                         </div>
                     </div>
