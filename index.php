@@ -81,13 +81,30 @@
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
                 <?php
+                if ($page == '') {
+                    $page = 0;
+                    $disabled = 'disabled';
+                } elseif($page == 1){
+                    $disabled = 'disabled';
+                } else {
+                    $disabled = '';
+                }
+                $i = '';
+                echo "<li class='page-item ".$disabled."'><a class='page-link' href='index.php?page=".($page-1)."' class='button'>Previous</a></li>";
                 for ($i = 1; $i <= $count; $i++) {
                     if ($i == $page) {
-                        echo "<li class='page-item active'><a class='page-link active' href='index.php?page={$i}'>{$i}</a></li>";
+                        echo "<li class='page-item active'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
                     } else {
                         echo "<li class='page-item'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
                     }
                 }
+                $getpage = isset($_GET['page']) ? $_GET['page'] : '';
+                if($getpage == $i-1){
+                    $disable = 'disabled';
+                } else {
+                    $disable = '';
+                }
+                echo "<li class='page-item ". $disable ."'><a class='page-link' href='index.php?page=" . ($page + 1) . "' class='button'>NEXT</a></li>";
                 ?>
             </ul>
         </div>
