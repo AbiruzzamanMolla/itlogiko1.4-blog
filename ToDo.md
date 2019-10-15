@@ -21,7 +21,7 @@ Date: 14-10-2019
 - Adding Comment
 
 Date: 15-10-2019
-- Pagination in index page
-- View post in category
-- User Profile view
-- User Profile Edit
+- Pagination in index page -X
+- View post in category -X
+- User Profile view -X
+- User Profile Edit 
