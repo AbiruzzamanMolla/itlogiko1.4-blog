@@ -5,7 +5,6 @@ Date: 09-10-2019
 - Make Post CRUD
 - 
 
-
 Data: 13-10-2019
 - Add Comment in Post page
 - Add Registation Form and Serverside operations
@@ -20,3 +19,9 @@ Date: 14-10-2019
 - Adding Pagination
 - Adding Category wish post
 - Adding Comment
+
+Date: 15-10-2019
+- Pagination in index page
+- View post in category
+- User Profile view
+- User Profile Edit
