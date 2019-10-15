@@ -44,7 +44,7 @@ include "inc/header.php"; ?>
                                     <th>Username</th>
                                     <th>Email</th>
                                     <th>Bio</th>
-                                    <th>Role</th> 
+                                    <th>Role</th>
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
@@ -56,7 +56,7 @@ include "inc/header.php"; ?>
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $row['uid']; ?></th>
-                                        <td><?php echo $row['username']; ?></td>
+                                        <td><a href="http://ilkoblog.test/userprofile.php?uid=<?php echo $row['uid']; ?>"><?php echo $row['username']; ?></a></td>
                                         <td><?php echo $row['email']; ?></td>
                                         <td><?php echo $row['bio']; ?></td>
                                         <td><?php echo $row['role']; ?></td>
