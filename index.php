@@ -65,7 +65,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title"><?php echo $row['post_title']; ?></h2>
-                            <p class="card-text"><img class="postImage" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap"><?php echo $row['post_content']; ?></p>
+                            <p class="card-text"><img class="img-fluid float-left img-thumbnail postImage" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap"><?php echo $row['post_content']; ?></p>
                             <a href="post.php?id=<?php echo $row['post_id']; ?>" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
@@ -78,19 +78,19 @@
             }
             ?>
             <!-- Pager -->
-                <!-- Pagination -->
-                <ul class="pagination justify-content-center mb-4">
-                    <?php
-                    for ($i = 1; $i <= $count; $i++) {
-                        if ($i == $page) {
-                            echo "<li class='page-item active'><a class='page-link active' href='index.php?page={$i}'>{$i}</a></li>";
-                        } else {
-                            echo "<li class='page-item'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
-                        }
+            <!-- Pagination -->
+            <ul class="pagination justify-content-center mb-4">
+                <?php
+                for ($i = 1; $i <= $count; $i++) {
+                    if ($i == $page) {
+                        echo "<li class='page-item active'><a class='page-link active' href='index.php?page={$i}'>{$i}</a></li>";
+                    } else {
+                        echo "<li class='page-item'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
                     }
-                    ?>
-                </ul>
-            </div>
+                }
+                ?>
+            </ul>
+        </div>
         <!-- Sidebar Widgets Column -->
         <div class="col-md-3">
 
@@ -121,7 +121,7 @@
                                 while ($row = $result->fetch_assoc()) {
                                     ?>
                                     <li>
-                                        <a href="showByCat.php?cat_id=<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></a>
+                                        <a href="postByCat.php?catId=<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></a>
                                     </li>
                                     <hr>
                                 <?php }

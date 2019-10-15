@@ -25,11 +25,10 @@
                         $result = $db->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             ?>
-                        <li>
-                            <a
-                                href="showByCat.php?cat_id=<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></a>
-                        </li>
-                        <hr>
+                            <li>
+                                <a href="postByCat.php?catId=<?php echo $row['cat_id']; ?>"><?php echo $row['cat_name']; ?></a>
+                            </li>
+                            <hr>
                         <?php }
                         ?>
                     </ul>
