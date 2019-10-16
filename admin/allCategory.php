@@ -63,12 +63,13 @@ include "inc/header.php"; ?>
                                 $sql = "SELECT * FROM `tbl_category`";
                                 $result = $db->query($sql);
                                 while ($row = $result->fetch_assoc()) {
+                                    $cat_id = $row['cat_id'];
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $row['cat_id']; ?></th>
                                         <td><?php echo $row['cat_name']; ?></td>
                                         <td><?php echo $row['cat_description']; ?></td>
-                                        <td>5</td>
+                                        <td><?php echo totalPostOnCat($cat_id) ?></td>
                                         <td><?php echo $row['cat_status']; ?></td>
                                         <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                     </tr>
