@@ -12,6 +12,7 @@
 // including database connection
 include "../db/conn.php";
 
+/*/  Function for add category and show category*/
 
 // adding category function
 function addCat($cat_name, $cat_description, $cat_status){
@@ -37,8 +38,6 @@ function totalPostOnCat($cat_id){
     $query = "SELECT * FROM `tbl_posts` WHERE `post_category_id` = $cat_id";
     return $result = $db->query($query)->num_rows;
 }
-
-
 
 // show category name in all post
 function showCatNameById($id){
@@ -80,7 +79,18 @@ function statusCngr($cat_id, $status){
 
 }
 
+/*/  Function for edit category*/
 
+// status changer
+function stscngr($status){
+    if ($status == '1') {
+        echo '<option value="1" selected>Published</option>';
+        echo '<option value="0">Draft</option>';
+    } else {
+        echo '<option value="1">Published</option>';
+        echo '<option value="0" selected>Draft</option>';
+    }
+}
 
 
 

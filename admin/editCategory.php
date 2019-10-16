@@ -12,13 +12,16 @@ include "inc/header.php"; ?>
                         <li class="breadcrumb-item">
                             <a href="index.php">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">Add Category</li>
+                        <li class="breadcrumb-item">
+                            <a href="allCategory.php">All Category</a>
+                        </li>
+                        <li class="breadcrumb-item active">Edit Category</li>
                     </ol>
                 </div>
                 <div class="col-md-4">
                     <div class="btn-group float-right mt-2" role="group">
-                        <a class="btn btn-success btn-md disabled" href="addCategory.php">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add Category
+                        <a class="btn btn-success btn-md" href="allCategory.php">
+                            <i class="fa fa-arrow-alt-circle-left" aria-hidden="true"></i> All Category
                         </a>
                     </div>
                 </div>
@@ -60,8 +63,7 @@ include "inc/header.php"; ?>
                             <div class="form-group">
                                 <b>Status: </b>
                                 <select name="cat_status" class="form-control">
-                                    <option value="1">Publish</option>
-                                    <option value="0">Draft</option>
+                                    <?php stscngr($row['cat_status']); ?>
                                 </select>
                             </div>
                             <input type="hidden" name="id" value="<?php echo $id; ?>">
