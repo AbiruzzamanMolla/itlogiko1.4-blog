@@ -1,5 +1,33 @@
 <?php include_once "includes/header.php"; ?>
 <?php include "db/conn.php"; ?>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Small Scale Blog - ITLogiko 1.4</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <!-- Page Content -->
 <div class="container">
 
@@ -31,7 +59,7 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap">
+                <img class="img-fluid" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap">
 
                 <hr>
 
@@ -39,131 +67,60 @@
                 <p class="lead"> <?php echo $row['post_content']; ?> </p>
 
                 <hr>
+                <!-- Comments Form -->
+                <div class="card my-4">
+                    <h5 class="card-header mb-3">Leave a Comment:</h5>
+                    <div class="card-body">
+                        <?php
+                        $class= '';
+                        if(isset($_POST['submit'])){
+                            $post_id = $_POST['post_id'];
+                            $username = $_POST['username'];
+                            $comment_body = $_POST['comment_body'];
+                            $query = "INSERT INTO `tbl_comment`(`post_id`, `username`, `comment_body`) VALUES ($post_id,'$username', '$comment_body')";
+                            $result = $db->query($query);
+                            if($result){
+                                echo "<span class='alert alert-warning float-center'>Please wait for admin approval for your comment!</span>";
+                                $class = 'p-4 m-4';
+                            }
+                        }
+                        ?>
+                        <form action="" method="post" class="<?php echo $class ?>">
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control" placeholder="Enter your name..">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="comment_body" rows="3"></textarea>
+                            </div>
+                            <input type="hidden" name="post_id" value="<?php echo $id; ?>">
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Single Comment -->
+                <?php
+                    $sql = "SELECT * FROM `tbl_comment` WHERE `post_id` = $id AND `status`= 1";
+                    $result = $db->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+                    <div class="media mb-4">
+                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+                        <div class="media-body">
+                            <h5 class="mt-0"><?php echo $row['username']; ?></h5>
+                            <?php echo $row['comment_body']; ?>
+                        </div>
+                    </div>
+                    <hr>
             <?php }
+            }
             ?>
-            <!-- Comments Form -->
-            <!-- <div class="card my-4">
-                <h5 class="card-header">Leave a Comment:</h5>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-            </div> -->
-
-            <!-- Single Comment -->
-            <!-- <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">Commenter Name</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-                </div>
-            </div> -->
-
-            <!-- Comment with nested comments -->
-            <!-- <div class="media mb-4">
-                <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                <div class="media-body">
-                    <h5 class="mt-0">Commenter Name</h5>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras
-                    purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-                    vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-                    <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                        <div class="media-body">
-                            <h5 class="mt-0">Commenter Name</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
-                            ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-
-                    <div class="media mt-4">
-                        <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-                        <div class="media-body">
-                            <h5 class="mt-0">Commenter Name</h5>
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                            Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc
-                            ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-                        </div>
-                    </div>
-
-                </div>
-            </div> -->
-
         </div>
-
         <!-- Sidebar Widgets Column -->
-        <div class="col-md-4">
-
-            <!-- Search Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Search</h5>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Categories Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Categories</h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Web Design</a>
-                                </li>
-                                <li>
-                                    <a href="#">HTML</a>
-                                </li>
-                                <li>
-                                    <a href="#">Freebies</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-6">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">JavaScript</a>
-                                </li>
-                                <li>
-                                    <a href="#">CSS</a>
-                                </li>
-                                <li>
-                                    <a href="#">Tutorials</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Side Widget -->
-            <div class="card my-4">
-                <h5 class="card-header">Side Widget</h5>
-                <div class="card-body">
-                    You can put anything you want inside of these side widgets. They are easy to use, and feature the
-                    new Bootstrap 4 card containers!
-                </div>
-            </div>
-
-        </div>
-
+        <?php include "includes/sidebar.php"; ?>
     </div>
     <!-- /.row -->
 
 </div>
 <!-- /.container -->
-<?php include_once "includes/header.php"; ?>
+<?php include_once "includes/footer.php"; ?>

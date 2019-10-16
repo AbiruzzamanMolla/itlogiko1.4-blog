@@ -37,6 +37,11 @@
         <!-- Blog Entries Column -->
         <div class="col-md-9 mt-4">
             <?php
+            if (!isset($_GET['catId'])) {
+                header("Location: index.php");
+            } else {
+                $catID = $_GET['catId'];
+            }
             $per_page = 5;
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
@@ -50,14 +55,14 @@
             }
             ?>
             <?php
-            $post_query_count = "SELECT * FROM `tbl_posts` WHERE post_status = '1'";
+            $post_query_count = "SELECT * FROM `tbl_posts` WHERE post_status = '1' AND `post_category_id` = $catID";
             $find_count = $db->query($post_query_count);
             $count = $find_count->num_rows;
             if ($count < 1) {
                 echo "<center><div class='alert alert-info'><strong>Sorry!</strong> No post abilable.....</div></center>";
             } else {
                 $count = ceil($count / 5);
-                $query = "SELECT * FROM `tbl_posts` WHERE post_status = '1' ORDER BY `post_id` DESC  LIMIT $page_1,$per_page";
+                $query = "SELECT * FROM `tbl_posts` WHERE `post_status` = '1' AND `post_category_id` = $catID ORDER BY `post_id` DESC  LIMIT $page_1,$per_page";
                 $select_all_posts_query = $db->query($query);
                 while ($row = $select_all_posts_query->fetch_assoc()) {
                     ?>
@@ -81,30 +86,13 @@
             <!-- Pagination -->
             <ul class="pagination justify-content-center mb-4">
                 <?php
-                if ($page == '') {
-                    $page = 0;
-                    $disabled = 'disabled';
-                } elseif($page == 1){
-                    $disabled = 'disabled';
-                } else {
-                    $disabled = '';
-                }
-                $i = '';
-                echo "<li class='page-item ".$disabled."'><a class='page-link' href='index.php?page=".($page-1)."' class='button'>Previous</a></li>";
                 for ($i = 1; $i <= $count; $i++) {
                     if ($i == $page) {
-                        echo "<li class='page-item active'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
+                        echo "<li class='page-item active'><a class='page-link active' href='index.php?page={$i}'>{$i}</a></li>";
                     } else {
                         echo "<li class='page-item'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
                     }
                 }
-                $getpage = isset($_GET['page']) ? $_GET['page'] : '';
-                if($getpage == $i-1){
-                    $disable = 'disabled';
-                } else {
-                    $disable = '';
-                }
-                echo "<li class='page-item ". $disable ."'><a class='page-link' href='index.php?page=" . ($page + 1) . "' class='button'>NEXT</a></li>";
                 ?>
             </ul>
         </div>

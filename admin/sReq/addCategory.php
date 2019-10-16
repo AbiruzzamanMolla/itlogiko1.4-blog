@@ -1,5 +1,6 @@
 <?php
-include_once('../db/conn.php');
+session_start();
+include_once('../func/function.php');
     if (isset($_POST['createCategory'])) {
         $cat_name = $_POST['cat_name'];
         $cat_description = $_POST['cat_description'];
@@ -8,14 +9,23 @@ include_once('../db/conn.php');
             $cat_status = 0;
         }
         
-        $query = "INSERT INTO `tbl_category`(`cat_name`, `cat_description`,`cat_status`) ";
-        $query .= "VALUES('{$cat_name}','{$cat_description}',{$cat_status}) ";
-        $create_category_query = $db->query($query);
-        if($create_category_query){
-            header("Location: ../allCategory.php");
+        if (empty($cat_description) && empty($cat_name)) {
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Please add Category name and Discription!! ";
+        header("Location: ../addCategory.php");
+        }elseif(empty($cat_name)){
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Please add Category name!! ";
+        header("Location: ../addCategory.php");
+        }
+        elseif (empty($cat_description)) {
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Please add Category Description!! ";
+        header("Location: ../addCategory.php");
         } else {
-        echo mysqli_error($db);
-    }
+            addCat($cat_name, $cat_description, $cat_status);
+        }
+
     } else {
-        header("Location: ../allCategory.php");
+        header("Location: ../addCategory.php");
     }
