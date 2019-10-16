@@ -43,7 +43,7 @@ include "inc/header.php"; ?>
                                     <th>#ID</th>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Number of Post</th>
+                                    <th>Total Post</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -53,7 +53,7 @@ include "inc/header.php"; ?>
                                     <th>#ID</th>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Number of Post</th>
+                                    <th>Total Post</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -63,14 +63,14 @@ include "inc/header.php"; ?>
                                 $sql = "SELECT * FROM `tbl_category`";
                                 $result = $db->query($sql);
                                 while ($row = $result->fetch_assoc()) {
-                                    $cat_id = $row['cat_id'];
                                     ?>
                                     <tr>
                                         <th scope="row"><?php echo $row['cat_id']; ?></th>
                                         <td><?php echo $row['cat_name']; ?></td>
                                         <td><?php echo $row['cat_description']; ?></td>
-                                        <td><?php echo totalPostOnCat($cat_id) ?></td>
-                                        <td><?php echo $row['cat_status']; ?></td>
+                                        <td><?php echo totalPostOnCat($row['cat_id']) ?></td>
+                                        <td><?php echo statusConvt($row['cat_status']); ?><form class="ml-2 d-inline" action="sReq/catStsCng.php" method="post"><input type="hidden" name="cat_id" value="<?php echo $row['cat_id']; ?>"><button type="submit" name="status" value="<?php echo $row['cat_status']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-sync d-inline"></i></button></form>
+                                        </td>
                                         <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
                                     </tr>
                                 <?php } ?>
