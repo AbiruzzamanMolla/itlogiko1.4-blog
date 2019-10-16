@@ -69,9 +69,23 @@
                 <hr>
                 <!-- Comments Form -->
                 <div class="card my-4">
-                    <h5 class="card-header">Leave a Comment:</h5>
+                    <h5 class="card-header mb-3">Leave a Comment:</h5>
                     <div class="card-body">
-                        <form>
+                        <?php
+                        $class= '';
+                        if(isset($_POST['submit'])){
+                            $post_id = $_POST['post_id'];
+                            $username = $_POST['username'];
+                            $comment_body = $_POST['comment_body'];
+                            $query = "INSERT INTO `tbl_comment`(`post_id`, `username`, `comment_body`) VALUES ($post_id,'$username', '$comment_body')";
+                            $result = $db->query($query);
+                            if($result){
+                                echo "<span class='alert alert-warning float-center'>Please wait for admin approval for your comment!</span>";
+                                $class = 'p-4 m-4';
+                            }
+                        }
+                        ?>
+                        <form action="" method="post" class="<?php echo $class ?>">
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control" placeholder="Enter your name..">
                             </div>
@@ -79,14 +93,14 @@
                                 <textarea class="form-control" name="comment_body" rows="3"></textarea>
                             </div>
                             <input type="hidden" name="post_id" value="<?php echo $id; ?>">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>
 
                 <!-- Single Comment -->
                 <?php
-                    $sql = "SELECT * FROM `tbl_comment` WHERE `comment_id` = $id";
+                    $sql = "SELECT * FROM `tbl_comment` WHERE `post_id` = $id AND `status`= 1";
                     $result = $db->query($sql);
                     while ($row = $result->fetch_assoc()) {
                         ?>

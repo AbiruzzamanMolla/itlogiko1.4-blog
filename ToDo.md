@@ -24,4 +24,7 @@ Date: 15-10-2019
 - Pagination in index page -X
 - View post in category -X
 - User Profile view -X
-- User Profile Edit 
+- User Profile Edit  - X(16-10)
+
+Date: 16-10-2019
+- Comment from post page

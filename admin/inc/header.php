@@ -4,8 +4,7 @@
 <?php session_start(); ?>
 <?php
 if (isset($_SESSION)) {
-    if ($_SESSION['role'] !== '0') {
-        // echo $_SESSION['role'];
+    if ($_SESSION['role'] == '0') {
         header("Location: login.php");
     }
 }
