@@ -1,4 +1,5 @@
-<?php ob_start(); include "inc/header.php"; ?>
+<?php ob_start();
+include "inc/header.php"; ?>
 <div id="wrapper">
     <!-- Sidebar -->
     <?php include "inc/sidebar.php"; ?>
@@ -11,7 +12,7 @@
                         <li class="breadcrumb-item">
                             <a href="index.php">Dashboard</a>
                         </li>
-                        <li class="breadcrumb-item active">All Post</li>
+                        <li class="breadcrumb-item active">All Category</li>
                     </ol>
                 </div>
                 <div class="col-md-4">
@@ -25,6 +26,16 @@
             <!-- DataTables Example -->
             <div class="card mb-3">
                 <div class="card-body">
+                    <?php
+                    if (isset($_SESSION['errMsg'])) { ?>
+                        <div class="<?php echo $_SESSION['errMsgClass'] ?>" id="showMsg">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong><?php echo $_SESSION['errMsg'] ?></strong></div>
+                    <?php
+                        unset($_SESSION["errMsgClass"]);
+                        unset($_SESSION["errMsg"]);
+                    }
+                    ?>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>

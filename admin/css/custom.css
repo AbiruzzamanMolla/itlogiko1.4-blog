@@ -2,3 +2,9 @@
     
 
 }
+
+.alert strong{
+    align-content: center;
+    text-align: center;
+    font-weight: bolder;
+}

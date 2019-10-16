@@ -2,13 +2,7 @@
 <?php include "func/function.php" ?>
 <?php ob_start(); ?>
 <?php session_start(); ?>
-<?php
-if (isset($_SESSION)) {
-    if ($_SESSION['role'] == '0') {
-        header("Location: login.php");
-    }
-}
-?>
+<?php adminCheck(); ?>
 <!DOCTYPE html>
 
 <head>
