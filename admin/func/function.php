@@ -27,7 +27,13 @@ function addCat($cat_name, $cat_description, $cat_status){
         header("Location: ../addCategory.php");
     }
 }
+// count total posts in a category
 
+function totalPostOnCat($cat_id){
+    global $db;
+    $query = "SELECT * FROM `tbl_posts` WHERE `post_category_id` = $cat_id";
+    return $result = $db->query($query)->num_rows;
+}
 // show category name in all post
 function showCatNameById($id){
     global $db;
