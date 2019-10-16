@@ -12,6 +12,7 @@ if (isset($_POST['login'])) {
         session_start();
         $_SESSION["id"] = $row['uid'];
         $_SESSION['username'] = $row['username'];
+        $_SESSION['role'] = $row['role'];
         header("Location: ../index.php");
     } else {
         header("Location: ../login.php?msg=Problem Login!");
