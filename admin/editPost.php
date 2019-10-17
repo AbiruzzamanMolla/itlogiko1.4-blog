@@ -24,6 +24,16 @@
                 </div>
                 <div class="card-body">
                     <?php
+                    if (isset($_SESSION['errMsg'])) { ?>
+                        <div class="<?php echo $_SESSION['errMsgClass'] ?>" id="showMsg">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong><?php echo $_SESSION['errMsg'] ?></strong></div>
+                    <?php
+                        unset($_SESSION["errMsgClass"]);
+                        unset($_SESSION["errMsg"]);
+                    }
+                    ?>
+                    <?php
                     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         $id = $_GET['id'];
                         $sql = "SELECT * FROM `tbl_posts` WHERE `post_id` = $id";
@@ -50,9 +60,7 @@
                                     <div class="form-group">
                                         <label for="postStatus">Post Status</label>
                                         <select class="form-control" name="post_status" id="postStatus">
-                                            <option value="null">Select Status</option>
-                                            <option value="1">Published</option>
-                                            <option value="0">Draft</option>
+                                            <?php stscngr($row['post_status']) ?>
                                         </select>
                                     </div>
                                 </div>
@@ -61,11 +69,6 @@
                                 <label for="postAuthor">Author</label>
                                 <input type="text" name="post_author" value="<?php echo $row['post_author']; ?>" class="form-control" id="postAuthor">
                             </div>
-                            <!-- <p id="preview">Select Preview</p>
-                            <div class="custom-file p-4">
-                                <input type="file" class="custom-file-input" name="post_image" id="postImage">
-                                <label class="custom-file-label" for="postImage">Choose image</label>
-                            </div> -->
                             <div class="form-group">
                                 <label for="postContent">Content</label>
                                 <textarea class="form-control" name="post_content" id="postContent" rows="3"><?php echo $row['post_content']; ?></textarea>
@@ -77,13 +80,9 @@
                                 </select>
                             </div>
                             <div class="form-group row">
-                                <div class="col-sm-6">
-                                    <button type="submit" name="editPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Update Post</button>
+                                <div class="col-sm-12">
+                                    <button type="submit" name="editPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2 m-auto">Update Post</button>
                                 </div>
-                                <div class="col-sm-6">
-                                    <button type="reset" class="btn btn-secondary btn-block btn-lg text-center p-3 m-2">Reset</button>
-                                </div>
-                            </div>
                         </form>
                     <?php } else {
                         header("Location: allPost.php");
@@ -107,12 +106,10 @@
                 $row = $result->fetch_assoc();
                 $tags = $row['post_tags'];
                 $tags = explode(',', $tags);
-                print_r($tags);
                 foreach ($tags as $tag) {
                     $tag2[] = '"' . str_replace(' ', '', $tag) . '"';
                 }
                 $tag2 = implode(',', $tag2);
-                print($tag2);
             }
             ?>
             <script src="vendor/select2/js/select2.min.js"></script>

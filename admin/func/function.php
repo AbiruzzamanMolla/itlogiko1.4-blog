@@ -144,8 +144,25 @@ function addPost($post_category_id, $post_title, $post_author, $post_date, $post
         header("Location: allPost.php");
     }
 }
-// delete post
 
+// edit post
+
+function editPost($post_category_id, $post_title, $post_author, $post_date, $post_content, $post_tags, $post_status, $id){
+    global $db;
+    $query = "UPDATE `tbl_posts` SET `post_category_id` = '{$post_category_id}', `post_title` = '{$post_title}', `post_author` = '{$post_author}', `post_date` = '{$post_date}', `post_content` = '{$post_content}', `post_tags` = '{$post_tags}', `post_status` = $post_status WHERE `tbl_posts`.`post_id` = $id";
+    $result = $db->query($query);
+    if ($result) {
+        $_SESSION['errMsgClass'] = "alert alert-success alert-dismissible";
+        $_SESSION['errMsg'] = "Post edited Successfully!!";
+        header("Location: ../allPost.php");
+    } else {
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Post editing failed!!";
+        header("Location: ../allPost.php");
+    }
+}
+
+// delete post
 function delPost($id){
     global $db;
     $sql = "DELETE FROM `tbl_posts` WHERE `post_id` = $id";
