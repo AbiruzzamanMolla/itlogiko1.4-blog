@@ -126,9 +126,24 @@ function delCat($id){
 }
 
 
+/*/  Function for post adding*/
 
+// delete post
 
-
+function delPost($id){
+    global $db;
+    $sql = "DELETE FROM `tbl_posts` WHERE `post_id` = $id";
+    $result = $db->query($sql);
+    if ($result) {
+        $_SESSION['errMsgClass'] = "alert alert-warning alert-dismissible";
+        $_SESSION['errMsg'] = "Post Deleted Successfully!!";
+        header("Location: allPost.php");
+    } else {
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Post Deleted failed!!";
+        header("Location: allPost.php");
+    }
+}
 
 
 

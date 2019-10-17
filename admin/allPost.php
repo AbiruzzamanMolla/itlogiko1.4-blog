@@ -1,4 +1,5 @@
-<?php ob_start(); include "inc/header.php"; ?>
+<?php ob_start();
+include "inc/header.php"; ?>
 <div id="wrapper">
     <!-- Sidebar -->
     <?php include "inc/sidebar.php"; ?>
@@ -25,6 +26,16 @@
             <!-- DataTables Example -->
             <div class="card mb-3">
                 <div class="card-body">
+                    <?php
+                    if (isset($_SESSION['errMsg'])) { ?>
+                        <div class="<?php echo $_SESSION['errMsgClass'] ?>" id="showMsg">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong><?php echo $_SESSION['errMsg'] ?></strong></div>
+                    <?php
+                        unset($_SESSION["errMsgClass"]);
+                        unset($_SESSION["errMsg"]);
+                    }
+                    ?>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -65,11 +76,11 @@
                                         <td><?php echo $row['post_author']; ?></td>
                                         <td><?php echo showCatNameById($row['post_category_id']); ?></td>
                                         <td><?php echo $row['post_date']; ?></td>
-                                        <td><?php echo $row['post_status']; ?></td>
-                                        <td><?php echo $row['post_image']; ?></td>
+                                        <td><?php echo statusConvt($row['post_status']); ?></td>
+                                        <td><img class="img-thumbnail" src="../images/<?php echo $row['post_image']; ?>" alt=""></td>
                                         <td><?php echo $a = substr($row['post_content'], 0, 100);
                                                 echo (strlen($row['post_content']) > 100) ? "<a href=''>....</a>" : ""; ?></td>
-                                        <td><a class="btn btn-outline-warning btn-sm m-1" href="editPost.php?id=<?php echo $row['post_id']; ?>">Edit</a> <a class="btn btn-outline-danger btn-sm m-1" href="?delID=<?php echo $row['post_id']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                        <td><a class="btn btn-outline-warning btn-sm m-1" href="editPost.php?id=<?php echo $row['post_id']; ?>"><i class="fas fa-edit d-inline"></i></a> <a class="btn btn-outline-danger btn-sm d-inline m-1" href="?delID=<?php echo $row['post_id']; ?>" onclick="return confirm('Are you sure?');"><i class="far fa-trash-alt"></i></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -82,11 +93,6 @@
         <!-- /.container-fluid -->
         <?php include "inc/footer.php"; ?>
 
-        <?php
-        if (isset($_GET['delID'])) {
-            $id = $_GET['delID'];
-            $sql = "DELETE FROM `tbl_posts` WHERE `post_id` = $id";
-            $result = $db->query($sql);
-            header("Location: allPost.php");
-        }
-        ?>
+        <?php if (isset($_GET['delID'])) {
+            delPost($_GET['delID']);
+        } ?>
