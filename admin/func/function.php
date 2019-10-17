@@ -108,6 +108,23 @@ function editCategory($id, $cat_name, $cat_description, $cat_status){
     }
 }
 
+// delete category
+
+function delCat($id){
+    global $db;
+    $sql = "DELETE FROM `tbl_category` WHERE `cat_id` = $id";
+    $result = $db->query($sql);
+    if($result){
+        $_SESSION['errMsgClass'] = "alert alert-warning alert-dismissible";
+        $_SESSION['errMsg'] = "Category Deleted Successfully!!";
+        header("Location: allCategory.php");
+    } else {
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Category Deleted failed!!";
+        header("Location: allCategory.php");
+    }
+}
+
 
 
 

@@ -84,11 +84,4 @@ include "inc/header.php"; ?>
         <!-- /.container-fluid -->
         <?php include "inc/footer.php"; ?>
 
-        <?php
-        if (isset($_GET['delID'])) {
-            $id = $_GET['delID'];
-            $sql = "DELETE FROM `tbl_category` WHERE `cat_id` = $id";
-            $result = $db->query($sql);
-            header("Location: allCategory.php");
-        }
-        ?>
+        <?php if (isset($_GET['delID'])) { delCat($_GET['delID']); } ?>
