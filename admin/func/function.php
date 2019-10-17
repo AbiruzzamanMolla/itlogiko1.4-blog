@@ -92,6 +92,21 @@ function stscngr($status){
     }
 }
 
+// edit category
+function editCategory($id, $cat_name, $cat_description, $cat_status){
+    global $db;
+    $query = "UPDATE `tbl_category` SET `cat_name` = '$cat_name', `cat_description` = '$cat_description', `cat_status` = '$cat_status' WHERE `tbl_category`.`cat_id` = $id";
+    $result = $db->query($query);
+    if ($result) {
+        $_SESSION['errMsgClass'] = "alert alert-success alert-dismissible";
+        $_SESSION['errMsg'] = "Category changed succesfully!";
+        header("Location: ../allCategory.php");
+    } else {
+        $_SESSION['errMsgClass'] = "alert alert-warning alert-dismissible";
+        $_SESSION['errMsg'] = "Category change failed!";
+        header("Location: ../allCategory.php");
+    }
+}
 
 
 
