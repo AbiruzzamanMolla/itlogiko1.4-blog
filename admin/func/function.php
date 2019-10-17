@@ -126,8 +126,24 @@ function delCat($id){
 }
 
 
-/*/  Function for post adding*/
+/*/  Function for post */
+// add post 
 
+function addPost($post_category_id, $post_title, $post_author, $post_date, $post_image, $post_content, $post_tags, $post_comment_count, $post_status){
+    global $db;
+    $query = "INSERT INTO `tbl_posts`(`post_category_id`, `post_title`, `post_author`, `post_date`, `post_image`, `post_content`, `post_tags`, `post_comment_count`, `post_status`) ";
+    $query .= "VALUES({$post_category_id},'{$post_title}','{$post_author}','{$post_date}','{$post_image}','{$post_content}','{$post_tags}',{$post_comment_count},'{$post_status}') ";
+    $result = $db->query($query);
+    if ($result) {
+        $_SESSION['errMsgClass'] = "alert alert-success alert-dismissible";
+        $_SESSION['errMsg'] = "Post added Successfully!!";
+        header("Location: allPost.php");
+    } else {
+        $_SESSION['errMsgClass'] = "alert alert-danger alert-dismissible";
+        $_SESSION['errMsg'] = "Post adding failed!!";
+        header("Location: allPost.php");
+    }
+}
 // delete post
 
 function delPost($id){
@@ -158,6 +174,16 @@ function showCat(){
     $result = $db->query($sql);
     while ($row = $result->fetch_assoc()) {
         echo "<option value='{$row['cat_id']}'>{$row['cat_name']}</option>";
+    }
+}
+// show tags
+
+function showTags(){
+    global $db;
+    $sql = "SELECT `tags` FROM `tbl_tags`";
+    $result = $db->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='{$row['tags']}'>{$row['tags']}</option>";
     }
 }
 // logout function

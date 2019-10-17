@@ -1,4 +1,5 @@
 <?php include "inc/header.php"; ?>
+<link rel="stylesheet" href="vendor/select2/css/select2.min.css">
 <div id="wrapper">
 
     <!-- Sidebar -->
@@ -35,12 +36,26 @@
                                 <input type="text" name="post_title" value="<?php echo $row['post_title']; ?>" class="form-control" id="postTitle" placeholder="Post Title">
                                 <input type="hidden" name="id" value="<?php echo $row['post_id']; ?>">
                             </div>
-                            <div class="form-group">
-                                <label for="post_category">Select Category</label>
-                                <select class="form-control" name="post_category_id" id="post_category">
-                                    <option value="<?php echo $row['post_category_id']; ?>"><?php echo showCatNameById($row['post_category_id']); ?></option>
-                                    <?php showCat(); ?>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="post_category">Select Category</label>
+                                        <select class="form-control" name="post_category_id" id="post_category">
+                                            <option value="null">Select Category</option>
+                                            <?php showCat(); ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="postStatus">Post Status</label>
+                                        <select class="form-control" name="post_status" id="postStatus">
+                                            <option value="null">Select Status</option>
+                                            <option value="1">Published</option>
+                                            <option value="0">Draft</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="postAuthor">Author</label>
@@ -56,14 +71,11 @@
                                 <textarea class="form-control" name="post_content" id="postContent" rows="3"><?php echo $row['post_content']; ?></textarea>
                             </div>
                             <div class="form-group">
-                                <label for="postTags">Tags</label>
-                                <input type="text" name="post_tags" class="form-control" style="width: 80%; padding: 15px 22px; margin: 10px 5px; box-sizing: border-box;" id="postTags" value="<?php echo $row['post_tags']; ?>" data-role="tagsinput">
+                                <label for="post_tags">Select Tags</label>
+                                <select class="form-control" name="post_tags[]" id="post_tags" multiple="multiple" required>
+                                    <?php showTags(); ?>
+                                </select>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline p-2 m-3">
-                                <input type="radio" id="postStatus" value="1" name="post_status" class="custom-control-input">
-                                <label class="custom-control-label" for="postStatus">Publish Post</label>
-                            </div>
-
                             <div class="form-group row">
                                 <div class="col-sm-6">
                                     <button type="submit" name="editPost" class="btn btn-success btn-block btn-lg text-center p-3 m-2">Update Post</button>
@@ -82,3 +94,35 @@
         </div>
         <!-- /.container-fluid -->
         <?php include "inc/footer.php"; ?>
+
+        <html>
+
+        <body>
+            <?php
+            $tag2 = [];
+            if (isset($_GET['id']) && is_numeric($_GET['id'])) {
+                $id = $_GET['id'];
+                $sql = "SELECT `post_tags` FROM `tbl_posts` WHERE `post_id` = $id";
+                $result = $db->query($sql) or die($db->error);
+                $row = $result->fetch_assoc();
+                $tags = $row['post_tags'];
+                $tags = explode(',', $tags);
+                print_r($tags);
+                foreach ($tags as $tag) {
+                    $tag2[] = '"' . str_replace(' ', '', $tag) . '"';
+                }
+                $tag2 = implode(',', $tag2);
+                print($tag2);
+            }
+            ?>
+            <script src="vendor/select2/js/select2.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#post_tags').select2();
+                    $('#post_tags').val([<?php print($tag2); ?>]);
+                    $('#post_tags').trigger('change');
+                });
+            </script>
+        </body>
+
+        </html>

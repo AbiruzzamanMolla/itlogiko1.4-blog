@@ -77,7 +77,7 @@ include "inc/header.php"; ?>
                                         <td><?php echo showCatNameById($row['post_category_id']); ?></td>
                                         <td><?php echo $row['post_date']; ?></td>
                                         <td><?php echo statusConvt($row['post_status']); ?></td>
-                                        <td><img class="img-thumbnail" src="../images/<?php echo $row['post_image']; ?>" alt=""></td>
+                                        <td><img class="img-thumbnail" src="images/<?php echo $row['post_image']; ?>" alt="no image"></td>
                                         <td><?php echo $a = substr($row['post_content'], 0, 100);
                                                 echo (strlen($row['post_content']) > 100) ? "<a href=''>....</a>" : ""; ?></td>
                                         <td><a class="btn btn-outline-warning btn-sm m-1" href="editPost.php?id=<?php echo $row['post_id']; ?>"><i class="fas fa-edit d-inline"></i></a> <a class="btn btn-outline-danger btn-sm d-inline m-1" href="?delID=<?php echo $row['post_id']; ?>" onclick="return confirm('Are you sure?');"><i class="far fa-trash-alt"></i></a></td>
