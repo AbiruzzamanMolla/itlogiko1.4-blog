@@ -180,12 +180,47 @@ function delPost($id){
 
 
 
+/*  user comment controll functions */
 
+// change comment status
 
+function cmtStsCngr($cmt_id, $status){
+    global $db;
+    $status = $status == '1' ? '0' : '1';
+    $query = "UPDATE `tbl_comment` SET `status` = $status WHERE `comment_id` = $cmt_id";
+    $result = $db->query($query);
+    if ($result) {
+        $_SESSION['errMsgClass'] = "alert alert-success alert-dismissible";
+        $_SESSION['errMsg'] = "Comment status changed succesfully!";
+        header("Location: ../allComment.php");
+    } else {
+        $_SESSION['errMsgClass'] = "alert alert-warning alert-dismissible";
+        $_SESSION['errMsg'] = "Comment status change failed!";
+        header("Location: ../allComment.php");
+    }
+}
 
 
 // show categories in add post
 function showCat(){
+    global $db;
+    $sql = "SELECT `cat_id`,`cat_name` FROM `tbl_category`";
+    $result = $db->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='{$row['cat_id']}'>{$row['cat_name']}</option>";
+    }
+}
+// show categories in add post
+function showUsers(){
+    global $db;
+    $sql = "SELECT `uid`, `username` FROM `tbl_user`";
+    $result = $db->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='{$row['username']}'>{$row['username']}</option>";
+    }
+}
+// show categories in add post
+function showDate(){
     global $db;
     $sql = "SELECT `cat_id`,`cat_name` FROM `tbl_category`";
     $result = $db->query($sql);
@@ -224,4 +259,6 @@ function admRolConv($role){
         return "User";
     }
 }
+
+// function for cat name get.
 ?>
