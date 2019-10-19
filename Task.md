@@ -1,14 +1,14 @@
 Task: Make a small-scale blog application.
 
 === Major Requirements ===
-# Step 1: Posts CRUD.
-# Step 2: User registration.
-# Step 3: User login.
-# Step 4: User profile view
-# Step 5: User profile update
-# Step 6: Manage two type users (1 - Admin, 2 - User)
-# Step 7: Authorization
-# Step 8: Reports
+# Step 1: Posts CRUD. #done
+# Step 2: User registration. #done
+# Step 3: User login. #done
+# Step 4: User profile view #done
+# Step 5: User profile update #done
+# Step 6: Manage two type users (1 - Admin, 2 - User) #done
+# Step 7: Authorization #done
+# Step 8: Reports #done
 
 === Rules and Procedures ===
 1. Don't start all things at once, follow above ↑ steps and implement one by one.
