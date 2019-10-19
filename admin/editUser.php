@@ -24,6 +24,16 @@ include "inc/header.php"; ?>
                 </div>
                 <div class="card-body">
                     <?php
+                    if (isset($_SESSION['errMsg'])) { ?>
+                        <div class="<?php echo $_SESSION['errMsgClass'] ?>" id="showMsg">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong><?php echo $_SESSION['errMsg'] ?></strong></div>
+                    <?php
+                        unset($_SESSION["errMsgClass"]);
+                        unset($_SESSION["errMsg"]);
+                    }
+                    ?>
+                    <?php
                     if (isset($_GET['id']) && is_numeric($_GET['id'])) {
                         $id = $_GET['id'];
                         $sql = "SELECT * FROM `tbl_user` WHERE `uid` = $id";
@@ -41,7 +51,7 @@ include "inc/header.php"; ?>
                                 <input type="text" name="fullName" class="form-control" value="<?php echo $row['fullName']; ?>" id="fullName">
                             </div>
                             <div class="form-group">
-                                <label for="title">Moto:</label>
+                                <label for="title">Title:</label>
                                 <input type="text" name="title" class="form-control" value="<?php echo $row['title']; ?>" id="title">
                             </div>
                             <div class="form-group">
@@ -55,8 +65,19 @@ include "inc/header.php"; ?>
                             <div class=" form-group">
                                 <b>User role: </b>
                                 <select name="role" class="form-control">
-                                    <option value="1">User</option>
-                                    <option value="0">Admin</option>
+                                    <?php
+                                        if ($row['role'] == 1) {
+                                            echo "
+                                        <option value='0'>User</option>
+                                        <option value='1' selected>Admin</option>
+                                        ";
+                                        } else {
+                                            echo "
+                                            <option value='0' selected>User</option>
+                                            <option value='1'>Admin</option>
+                                            ";
+                                        } ?>
+
                                 </select>
                             </div>
                             <input type="hidden" name="id" value="<?php echo $id; ?>">

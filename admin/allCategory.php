@@ -71,7 +71,7 @@ include "inc/header.php"; ?>
                                         <td><?php echo totalPostOnCat($row['cat_id']) ?></td>
                                         <td><?php echo statusConvt($row['cat_status']); ?><form class="ml-2 d-inline" action="sReq/catStsCng.php" method="post"><input type="hidden" name="cat_id" value="<?php echo $row['cat_id']; ?>"><button type="submit" name="status" value="<?php echo $row['cat_status']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-sync d-inline"></i></button></form>
                                         </td>
-                                        <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>">Edit</a> || <a href="?delID=<?php echo $row['cat_id']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                        <td><a href="editCategory.php?id=<?php echo $row['cat_id']; ?>"><i class="fas fa-edit d-inline"></i></a> || <a href="?delID=<?php echo $row['cat_id']; ?>" onclick="return confirm('Are you sure?');"><i class="far fa-trash-alt"></i></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -84,11 +84,6 @@ include "inc/header.php"; ?>
         <!-- /.container-fluid -->
         <?php include "inc/footer.php"; ?>
 
-        <?php
-        if (isset($_GET['delID'])) {
-            $id = $_GET['delID'];
-            $sql = "DELETE FROM `tbl_category` WHERE `cat_id` = $id";
-            $result = $db->query($sql);
-            header("Location: allCategory.php");
-        }
-        ?>
+        <?php if (isset($_GET['delID'])) {
+            delCat($_GET['delID']);
+        } ?>

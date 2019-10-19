@@ -28,3 +28,8 @@ Date: 15-10-2019
 
 Date: 16-10-2019
 - Comment from post page
+
+Date: 19-10-2019
+- Refector edit user -X
+- edit comment 
+- report generate
