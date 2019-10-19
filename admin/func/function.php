@@ -216,4 +216,12 @@ function adminCheck(){
         header("Location: login.php");
     }
 }
+// admin role convarter
+function admRolConv($role){
+    if ($role == '1') {
+        return "Admin";
+    } else {
+        return "User";
+    }
+}
 ?>

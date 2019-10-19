@@ -26,6 +26,16 @@ include "inc/header.php"; ?>
             <!-- DataTables Example -->
             <div class="card mb-3">
                 <div class="card-body">
+                    <?php
+                    if (isset($_SESSION['errMsg'])) { ?>
+                        <div class="<?php echo $_SESSION['errMsgClass'] ?>" id="showMsg">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong><?php echo $_SESSION['errMsg'] ?></strong></div>
+                    <?php
+                        unset($_SESSION["errMsgClass"]);
+                        unset($_SESSION["errMsg"]);
+                    }
+                    ?>
                     <div class="table-responsive">
                         <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -59,8 +69,8 @@ include "inc/header.php"; ?>
                                         <td><a href="http://ilkoblog.test/userprofile.php?uid=<?php echo $row['uid']; ?>"><?php echo $row['username']; ?></a></td>
                                         <td><?php echo $row['email']; ?></td>
                                         <td><?php echo $row['bio']; ?></td>
-                                        <td><?php echo $row['role']; ?></td>
-                                        <td><a href="editUser.php?id=<?php echo $row['uid']; ?>">Edit</a> || <a href="?delID=<?php echo $row['uid']; ?>" onclick="return confirm('Are you sure?');">Delete</a></td>
+                                        <td><?php echo admRolConv($row['role']); ?></td>
+                                        <td><a href="editUser.php?id=<?php echo $row['uid']; ?>"><i class="fas fa-edit d-inline"></i></a> || <a href="?delID=<?php echo $row['uid']; ?>" onclick="return confirm('Are you sure?');"><i class="far fa-trash-alt"></i></a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
