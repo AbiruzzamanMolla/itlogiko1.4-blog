@@ -72,6 +72,7 @@
                         </thead>
                         <tbody>
                             <?php
+                            $query = '';
                             if (isset($_POST['report'])) {
                                 $category = isset($_POST['category']) ? $_POST['category'] : '';
                                 $users = isset($_POST['users']) ? $_POST['users'] : '';
