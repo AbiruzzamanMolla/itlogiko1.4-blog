@@ -13,7 +13,11 @@ if (isset($_POST['login'])) {
         $_SESSION["id"] = $row['uid'];
         $_SESSION['username'] = $row['username'];
         $_SESSION['role'] = $row['role'];
-        header("Location: ../index.php");
+        if(isset($_SESSION['backlink']) == 'add_user_post.php'){
+            header('Location: ../../add_user_post.php');
+        } else {
+            header("Location: ../index.php");
+        }
     } else {
         header("Location: ../login.php?msg=Problem Login!");
     }

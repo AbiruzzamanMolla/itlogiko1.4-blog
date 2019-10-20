@@ -1,5 +1,16 @@
-<?php include_once "includes/header.php";
-ob_start(); ?>
+<?php 
+include_once "includes/header.php";
+ob_start(); 
+if(!isset($_SESSION['id'])){
+    $_SESSION['backlink'] = 'add_user_post.php';
+    header("Location: admin/login.php");
+} else {
+    if (isset($_SESSION['backlink'])) {
+        unset($_SESSION['backlink']);
+    }
+}
+
+?>
 <link rel="stylesheet" href="admin/vendor/select2/css/select2.min.css">
 <?php include_once "function/functions.php"; ?>
 
