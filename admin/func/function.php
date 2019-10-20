@@ -248,7 +248,7 @@ function logout(){
 
 function adminCheck(){
     if(isset($_SESSION) && $_SESSION['role'] !== '1'){
-        header("Location: login.php");
+        header("Location: ../index.php");
     }
 }
 // admin role convarter

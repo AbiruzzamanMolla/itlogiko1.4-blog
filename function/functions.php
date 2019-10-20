@@ -9,5 +9,13 @@ function showCat(){
         echo "<option value='{$row['cat_id']}'>{$row['cat_name']}</option>";
     }
 }
-
+function showTags()
+{
+    global $db;
+    $sql = "SELECT `tags` FROM `tbl_tags`";
+    $result = $db->query($sql);
+    while ($row = $result->fetch_assoc()) {
+        echo "<option value='{$row['tags']}'>{$row['tags']}</option>";
+    }
+}
 ?>

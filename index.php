@@ -2,23 +2,7 @@
 <?php include "db/conn.php"; ?>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Small Scale Blog - ITLogiko 1.4</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link active" href="index.php">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include "includes/navbar.php"; ?>
 
 <!-- Page Content -->
 <div class="container-fluid">
@@ -61,7 +45,7 @@
                         </div>
                         <div class="card-footer text-muted">
                             Posted on <?php echo $row['post_date']; ?> by
-                            <a href="#"><?php echo $row['post_author']; ?></a>
+                            <a><?php echo $row['post_author']; ?></a>
                         </div>
                     </div>
                     <hr>
@@ -75,13 +59,13 @@
                 if ($page == '') {
                     $page = 0;
                     $disabled = 'disabled';
-                } elseif($page == 1){
+                } elseif ($page == 1) {
                     $disabled = 'disabled';
                 } else {
                     $disabled = '';
                 }
                 $i = '';
-                echo "<li class='page-item ".$disabled."'><a class='page-link' href='index.php?page=".($page-1)."' class='button'>Previous</a></li>";
+                echo "<li class='page-item " . $disabled . "'><a class='page-link' href='index.php?page=" . ($page - 1) . "' class='button'>Previous</a></li>";
                 for ($i = 1; $i <= $count; $i++) {
                     if ($i == $page) {
                         echo "<li class='page-item active'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
@@ -90,12 +74,12 @@
                     }
                 }
                 $getpage = isset($_GET['page']) ? $_GET['page'] : '';
-                if($getpage == $i-1){
+                if ($getpage == $i - 1) {
                     $disable = 'disabled';
                 } else {
                     $disable = '';
                 }
-                echo "<li class='page-item ". $disable ."'><a class='page-link' href='index.php?page=" . ($page + 1) . "' class='button'>NEXT</a></li>";
+                echo "<li class='page-item " . $disable . "'><a class='page-link' href='index.php?page=" . ($page + 1) . "' class='button'>NEXT</a></li>";
                 ?>
             </ul>
         </div>
@@ -124,6 +108,7 @@
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
 
         </div>

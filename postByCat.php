@@ -2,32 +2,7 @@
 <?php include "db/conn.php"; ?>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Small Scale Blog - ITLogiko 1.4</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include "includes/navbar.php"; ?>
 
 <!-- Page Content -->
 <div class="container-fluid">
@@ -70,7 +45,7 @@
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title"><?php echo $row['post_title']; ?></h2>
-                            <p class="card-text"><img class="img-fluid float-left img-thumbnail postImage" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap"><?php echo $row['post_content']; ?></p>
+                            <p class="card-text"><img class="img-fluid float-left img-thumbnail postImage" src="admin/images/<?php echo $row['post_image']; ?>" alt="Card image cap"><?php echo $row['post_content']; ?></p>
                             <a href="post.php?id=<?php echo $row['post_id']; ?>" class="btn btn-primary">Read More &rarr;</a>
                         </div>
                         <div class="card-footer text-muted">
@@ -88,9 +63,9 @@
                 <?php
                 for ($i = 1; $i <= $count; $i++) {
                     if ($i == $page) {
-                        echo "<li class='page-item active'><a class='page-link active' href='index.php?page={$i}'>{$i}</a></li>";
+                        echo "<li class='page-item active'><a class='page-link active' href='?catId={$catID}&page={$i}'>{$i}</a></li>";
                     } else {
-                        echo "<li class='page-item'><a class='page-link' href='index.php?page={$i}'>{$i}</a></li>";
+                        echo "<li class='page-item'><a class='page-link' href='?catId={$catID}&page={$i}'>{$i}</a></li>";
                     }
                 }
                 ?>

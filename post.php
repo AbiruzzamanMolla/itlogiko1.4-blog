@@ -2,32 +2,7 @@
 <?php include "db/conn.php"; ?>
 
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Small Scale Blog - ITLogiko 1.4</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Services</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<?php include "includes/navbar.php"; ?>
 <!-- Page Content -->
 <div class="container">
 
@@ -59,7 +34,7 @@
                 <hr>
 
                 <!-- Preview Image -->
-                <img class="img-fluid" src="images/<?php echo $row['post_image']; ?>" alt="Card image cap">
+                <img class="img-fluid" src="admin/images/<?php echo $row['post_image']; ?>" alt="Card image cap">
 
                 <hr>
 
@@ -72,19 +47,19 @@
                     <h5 class="card-header mb-3">Leave a Comment:</h5>
                     <div class="card-body">
                         <?php
-                        $class= '';
-                        if(isset($_POST['submit'])){
-                            $post_id = $_POST['post_id'];
-                            $username = $_POST['username'];
-                            $comment_body = $_POST['comment_body'];
-                            $query = "INSERT INTO `tbl_comment`(`post_id`, `username`, `comment_body`) VALUES ($post_id,'$username', '$comment_body')";
-                            $result = $db->query($query);
-                            if($result){
-                                echo "<span class='alert alert-warning float-center'>Please wait for admin approval for your comment!</span>";
-                                $class = 'p-4 m-4';
+                            $class = '';
+                            if (isset($_POST['submit'])) {
+                                $post_id = $_POST['post_id'];
+                                $username = $_POST['username'];
+                                $comment_body = $_POST['comment_body'];
+                                $query = "INSERT INTO `tbl_comment`(`post_id`, `username`, `comment_body`) VALUES ($post_id,'$username', '$comment_body')";
+                                $result = $db->query($query);
+                                if ($result) {
+                                    echo "<span class='alert alert-warning float-center'>Please wait for admin approval for your comment!</span>";
+                                    $class = 'p-4 m-4';
+                                }
                             }
-                        }
-                        ?>
+                            ?>
                         <form action="" method="post" class="<?php echo $class ?>">
                             <div class="form-group">
                                 <input type="text" name="username" class="form-control" placeholder="Enter your name..">
