@@ -40,7 +40,12 @@
 
                 <!-- Post Content -->
                 <p class="lead"> <?php echo $row['post_content']; ?> </p>
-
+                <div class="col-md-3 m-auto">
+                    <form action="includes/report.php" method="post">
+                        <input type="hidden" name="cr_count" value="<?php echo $row['post_comment_count']; ?>">
+                        <input type="hidden" name="id" value="<?php echo $row['post_id']; ?>">
+                        <button type="submit" name="report" value="report" class="btn btn-danger">Report this Post (<?php echo $row['post_comment_count']; ?>)</button></form>
+                </div>
                 <hr>
                 <!-- Comments Form -->
                 <div class="card my-4">
